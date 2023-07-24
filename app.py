@@ -113,6 +113,8 @@ exp_ohe = np.eye(11)[experience_class]
 sex_vec = np.array([sex_class])                               # Пол в виде вектора
 age_ohe = np.eye(11)[age_class]
 x_data = np.hstack([sex_vec,age_ohe,city_ohe,empl_multi,sсhed_multi,edu_multi,exp_ohe])
+x_data = x_data[np.newaxis,...] 
+print(x_data.shape)
 
 col11 = st.columns(1)
 st.text("Приблизительная зарплата на 2020 год.")
@@ -121,4 +123,4 @@ st.text(str(city_ohe)+str(empl_multi)+str(sсhed_multi))
 st.text(str(edu_multi)+str(exp_ohe))
 st.text(str(sex_vec)+str(age_ohe))
 prd=process(x_data)
-st.text(str(prd))
+st.text(str(prd[0]))
