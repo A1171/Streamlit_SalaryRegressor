@@ -1,6 +1,5 @@
 streamlit
 sklearn
 scipy
-pickle
 tensorflow-cpu==2.8.0
 protobuf==3.19.1
