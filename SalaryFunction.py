@@ -7,6 +7,7 @@ from keras import regularizers
 import keras
 import pickle
 import numpy as np
+from scipy.sparse import csr_matrix
 """
 def CreteModel():
     L2_1=0.0
@@ -43,6 +44,11 @@ with open('vectorizer.pkl','rb') as f:
   
 def process(CandidateData,JobDescription):
     TFIDF_result=tfidf_job_type.transform([JobDescription])
+    TFIDF_result=csr_matrix(TFIDF_result)
+    TFIDF_result.sort_indices()
+    #print(CandidateData.shape)
+    #print(TFIDF_result.shape)
+    #model.summary()
     prd=model.predict([CandidateData,TFIDF_result])
     prd=ScaleBackSalary(prd[0],y_std)
     return prd
